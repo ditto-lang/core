@@ -1,0 +1,10 @@
+module List exports (..);
+
+type List a = 
+  | Cons a (List a);
+  | Nil;
+
+map (fn : a -> b) (ls : List a) : List b = 
+  match ls with
+  | Cons a rest -> Cons (fn a) (map fn rest)
+  | Nil -> Nil;

@@ -1,0 +1,34 @@
+module Maybe exports (..);
+
+type Maybe a =
+  | Just a;
+  | Nothing;
+
+map (fn : a -> b) (m : Maybe a) : Maybe b =
+  match m with
+  | Just a -> Just (fn a)
+  | Nothing -> Nothing;
+
+map_or (default : b) (fn : a -> b) (m : Maybe a) : b =
+  match m with
+  | Just a -> fn a
+  | Nothing -> default;
+
+and_then (fn : a -> Maybe b) (m : Maybe a) : Maybe b = 
+  match m with
+  | Just a -> fn a
+  | Nothing -> Nothing;
+
+apply (m : Maybe a) (mbfn: Maybe (a -> b)) : Maybe b = 
+  match (mbfn, m) with
+  | (Just fn, Just a) -> Just (fn a)
+  | _ -> Nothing;
+
+with_default (default : a) (m : Maybe a) : a =
+  map_or default (\a -> a) m;
+
+-- TESTING
+
+foo : Maybe (Int, String) = apply (Just "") (apply (Just 1) (Just (\a b -> (a, b))));
+bar : Maybe (Int, String) = apply (Just "") (map (\a b -> (a, b)) (Just 1));
+

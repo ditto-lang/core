@@ -1,0 +1,17 @@
+module Basics exports (..);
+
+identity (a : a) : a = a;
+
+always (a : a) (_ignored : b) : a = a;
+
+not (b : Bool) : Bool = if b then False else True;
+
+flip (fn : a -> b -> c) (b : b) (a : a) : c = fn a b;
+
+first (x : (a, b)) : a = match x with | (a, _) -> a;
+
+second (x : (a, b)) : b = match x with | (_, b) -> b;
+
+curry (fn : a -> b -> c) (args : (a, b)) : c = fn (first args) (second args);
+
+uncurry (fn : (a, b) -> c) (a : a) (b : b) : c = fn (a, b);

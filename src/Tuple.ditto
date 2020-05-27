@@ -1,0 +1,5 @@
+module Tuple exports (..);
+
+first (x : (a, b)) : a = match x with | (a, _) -> a;
+
+second (x : (a, b)) : b = match x with | (_, b) -> b;

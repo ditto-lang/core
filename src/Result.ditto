@@ -1,0 +1,5 @@
+module Result exports (..);
+
+type Result e a =
+  | Err e;
+  | Ok a;

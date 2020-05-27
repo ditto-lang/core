@@ -1,0 +1,8 @@
+module Void exports (..);
+
+-- | A value of this type _can't_ be constructed.
+type Void = 
+  | IntoThe Void;
+
+never (nope : Void) : a = 
+  match nope with | IntoThe void -> never void;
