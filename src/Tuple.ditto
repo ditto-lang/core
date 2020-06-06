@@ -1,5 +1,21 @@
 module Tuple exports (..);
 
-first (x : (a, b)) : a = match x with | (a, _) -> a;
+first (tup : (a, b)) : a = 
+  match tup with 
+  | (a, _) -> a;
 
-second (x : (a, b)) : b = match x with | (_, b) -> b;
+second (tup : (a, b)) : b = 
+  match tup with 
+  | (_, b) -> b;
+
+map_first (fn : a -> x) (tup : (a, b)) : (x, b) = 
+  match tup with 
+  | (a, b) -> (fn a, b);
+
+map_second (fn : b -> y) (tup : (a, b)) : (a, y) = 
+  match tup with 
+  | (a, b) -> (a, fn b);
+
+map_both (fn_first : a -> x) (fn_second : b -> y) (tup : (a, b)) : (x, y) = 
+  match tup with 
+  | (a, b) -> (fn_first a, fn_second b);

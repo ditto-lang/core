@@ -1,5 +1,38 @@
 module Result exports (..);
 
+import Maybe (Maybe(..));
+
 type Result e a =
   | Err e;
   | Ok a;
+
+to_maybe (res : Result e a) : Maybe a = 
+  match res with
+  | Ok a -> Just a
+  | Err _ -> Nothing; 
+
+map (fn : a -> b) (res : Result e a) : Result e b =
+  match res with
+  | Ok a -> Ok (fn a)
+  | Err e -> Err e;
+
+map_err (fn : e -> b) (res : Result e a) : Result b a =
+  match res with
+  | Ok a -> Ok a
+  | Err e -> Err (fn e);
+
+and_then (fn : a -> Result e b) (res : Result e a) : Result e b = 
+  match res with
+  | Ok a -> fn a
+  | Err e -> Err e;
+
+apply (res : Result e a) (resfn: Result e (a -> b)) : Result e b = 
+  match (resfn, res) with
+  | (Ok fn, Ok a) -> Ok (fn a)
+  | (Ok _, Err e) -> Err e
+  | (Err e, _) -> Err e;
+
+or (res1 : Result e a) (res2 : Result e a) : Result e a = 
+  match res1 with
+  | Ok _ -> res1
+  | Err _ -> res2;

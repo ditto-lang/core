@@ -16,6 +16,11 @@ tail (ls : List a) : Maybe (List a) =
   | Cons _ rest -> Just rest
   | Nil -> Nothing;
 
+uncons (ls : List a) : Maybe { head : a, tail : List a } = 
+  match ls with
+  | Cons head tail -> Just { head, tail } 
+  | Nil -> Nothing;
+
 map (fn : a -> b) (ls : List a) : List b = 
   match ls with
   | Cons a rest -> Cons (fn a) (map fn rest)
