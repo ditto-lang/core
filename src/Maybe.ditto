@@ -31,9 +31,3 @@ or (m1 : Maybe a) (m2 : Maybe a) : Maybe a =
 
 with_default (default : a) (m : Maybe a) : a =
   map_with_default default (\a -> a) m;
-
--- TESTING
-
-foo : Maybe (Int, String) = apply (Just "") (apply (Just 1) (Just (\a b -> (a, b))));
-bar : Maybe (Int, String) = apply (Just "") (map (\a b -> (a, b)) (Just 1));
-

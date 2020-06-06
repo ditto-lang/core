@@ -1,10 +1,27 @@
 module List exports (..);
 
+import Maybe (Maybe(..));
+
 type List a = 
   | Cons a (List a);
   | Nil;
+
+head (ls : List a) : Maybe a =
+  match ls with
+  | Cons a _ -> Just a
+  | Nil -> Nothing;
+
+tail (ls : List a) : Maybe (List a) =
+  match ls with
+  | Cons _ rest -> Just rest
+  | Nil -> Nothing;
 
 map (fn : a -> b) (ls : List a) : List b = 
   match ls with
   | Cons a rest -> Cons (fn a) (map fn rest)
   | Nil -> Nil;
+
+zip (x : List a) (y : List b) : List (a, b) = 
+ match (x, y) with
+ | (Cons a tail_x, Cons b tail_y) -> Cons (a, b) (zip tail_x tail_y)
+ | _ -> Nil;
