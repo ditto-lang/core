@@ -3,7 +3,7 @@ module List exports (..);
 import Maybe (Maybe(..));
 
 type List a = 
-  | Cons a (List a);
+  | Cons a (List a)
   | Nil;
 
 head (ls : List a) : Maybe a =

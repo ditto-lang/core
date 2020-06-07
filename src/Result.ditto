@@ -3,7 +3,7 @@ module Result exports (..);
 import Maybe (Maybe(..));
 
 type Result e a =
-  | Err e;
+  | Err e
   | Ok a;
 
 to_maybe (res : Result e a) : Maybe a = 

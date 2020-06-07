@@ -1,7 +1,7 @@
 module Maybe exports (..);
 
 type Maybe a =
-  | Just a;
+  | Just a
   | Nothing;
 
 map (fn : a -> b) (m : Maybe a) : Maybe b =
