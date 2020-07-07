@@ -14,17 +14,24 @@ map_with_default (default : b) (fn : a -> b) (m : Maybe a) : b =
   | Just a -> fn a
   | Nothing -> default;
 
-and_then (fn : a -> Maybe b) (m : Maybe a) : Maybe b = 
+and_then (fn : a -> Maybe b) (m : Maybe a) : Maybe b =
   match m with
   | Just a -> fn a
   | Nothing -> Nothing;
 
-apply (m : Maybe a) (mbfn: Maybe (a -> b)) : Maybe b = 
+-- |
+-- | ```ditto
+-- | foo : Maybe Int =
+-- |   Just (\x y -> x + y)
+-- |      |> apply (Just 2)
+-- |      |> apply Nothing;
+-- | ```
+apply (m : Maybe a) (mbfn: Maybe (a -> b)) : Maybe b =
   match (mbfn, m) with
   | (Just fn, Just a) -> Just (fn a)
   | _ -> Nothing;
 
-or (m1 : Maybe a) (m2 : Maybe a) : Maybe a = 
+or (m1 : Maybe a) (m2 : Maybe a) : Maybe a =
   match m1 with
   | Just _ -> m1
   | Nothing -> m2;

@@ -8,6 +8,10 @@ second (tup : (a, b)) : b =
   match tup with
   | (_, b) -> b;
 
+swap (tup : (a, b)) : (b, a) =
+  match tup with
+  | (a, b) -> (b, a);
+
 map_first (fn : a -> x) (tup : (a, b)) : (x, b) =
   match tup with
   | (a, b) -> (fn a, b);

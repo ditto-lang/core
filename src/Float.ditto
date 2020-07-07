@@ -1,0 +1,11 @@
+module Float exports (..);
+
+add (x : Float) (y : Float) : Float = x +. y;
+
+sub (x : Float) (y : Float) : Float = x -. y;
+
+mul (x : Float) (y : Float) : Float = x *. y;
+
+div (x : Float) (y : Float) : Float = x /. y;
+
+negate (x : Float) : Float = 0.0 -. x;

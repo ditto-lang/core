@@ -1,0 +1,11 @@
+module Int exports (..);
+
+add (x : Int) (y : Int) : Int = x + y;
+
+sub (x : Int) (y : Int) : Int = x - y;
+
+mul (x : Int) (y : Int) : Int = x * y;
+
+div (x : Int) (y : Int) : Int = x / y;
+
+negate (x : Int) : Int = 0 - x;
