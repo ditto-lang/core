@@ -1,13 +1,8 @@
-module Array exports (..);
+module Array exports (index);
 
 import Maybe (Maybe(..));
 
 index (i : Int) (arr : Array a) : Maybe a =
-  index_impl Nothing Just i arr;
+  index_impl Just Nothing i arr;
 
-foreign index_impl 
-  (nope : Maybe a) 
-  (yep : a -> Maybe a) 
-  (i : Int) 
-  (arr : Array a) 
-  : Maybe a;
+foreign index_impl (yep : a -> Maybe a) (nope : Maybe a) (i : Int) (arr : Array a) : Maybe a;

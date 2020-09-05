@@ -1,5 +1,5 @@
-export const index_impl = (nope) => (yep) => (i) => (arr) =>
-  i < arr.length ? yep(arr[i]) : nope;
+export const index_impl = (Just) => (Nothing) => (i) => (arr) =>
+  i < arr.length ? Just(arr[i]) : Nothing;
 
 export const zip_with_impl = (f) => (xs) => (ys) => {
   const len = Math.max(xs.length, ys.length);
