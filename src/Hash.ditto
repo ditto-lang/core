@@ -1,0 +1,18 @@
+module Hash exports (..);
+
+import Array;
+
+bool (x : Bool) : Int = if x then 1 else 0;
+
+int (x : Int) : Int = x;
+
+foreign float (x : Float) : Int;
+
+foreign string (x : String) : Int;
+
+array (hasher : a -> Int) (x : Array a) : Int =
+  Array.reduce (\accum next -> 31 * accum + hasher next) 1 x;
+
+tuple (hashFirst : a -> Int) (hashSecond : b -> Int) (x : (a, b)) : Int =
+  match x with
+  | (a, b) -> hashFirst a * 31 + hashSecond b;

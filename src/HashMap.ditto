@@ -1,0 +1,17 @@
+module HashMap exports (..);
+
+-- This might be a very inefficient way of handling this (versus just having
+-- an IntMap, essentially. But let's see.
+
+type HashMap k v =
+  | HashMap { hasher : k -> Int, map : Foreign };
+
+foreign empty : Foreign;
+
+new (hasher : k -> Int) : HashMap k v = HashMap { hasher, map = empty };
+
+insert (k : k) (v : v) (hm : HashMap k v) : HashMap k v =
+  match hm with
+  | HashMap { hasher, map } -> HashMap { hasher, map = insert_impl (hasher k) v map };
+
+foreign insert_impl (k : Int) (v : a) (m : Foreign) : m;
