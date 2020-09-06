@@ -10,5 +10,5 @@ export const zip_with_impl = (f) => (xs) => (ys) => {
   return zs;
 };
 
-export const reduce_impl = (reducer) => (initial) => (arr) =>
+export const reduce = (reducer) => (initial) => (arr) =>
   arr.reduce((accum, next) => reducer(accum)(next), initial);

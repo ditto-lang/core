@@ -1,6 +1,5 @@
 module Array exports (
     index,
-    -- TODO: need to fix code generation for exporting foreign values.
     reduce,
 );
 
@@ -10,5 +9,4 @@ index (i : Int) (arr : Array a) : Maybe a = index_impl Just Nothing i arr;
 
 foreign index_impl (y : a -> Maybe a) (n : Maybe a) (i : Int) (arr : Array a) : Maybe a;
 
--- TODO: I think some primitive `Fn1 Fn2...FnN` types would be useful...
 foreign reduce (reducer : b -> a -> b) (initial : b) (arr : Array a) : b;
